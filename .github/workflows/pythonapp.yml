@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         # Building on both Windows, Linux(Ubuntu) and Mac simultaneously 
-        os: [macos-latest,ubuntu-latest]        
+        os: [macos-latest]        
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
@@ -60,6 +60,8 @@ jobs:
       run: |
         echo $PATH
         export PATH=/Users/runner/runners/2.169.1/work/learn-python/learn-python/.cache/bin:$PATH
+        echo $PATH
+        ls /Users/runner/runners/2.169.1/work/learn-python/learn-python/.cache/bin
         pylint src
       shell: bash
     - name: Lint with flake8
