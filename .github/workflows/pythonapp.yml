@@ -25,6 +25,9 @@ jobs:
     - name: set deployment dir
       run: |
          echo "::set-env name=DEPLOYMENT_PATH::$PWD/bin"
+         echo $PWD
+         echo $DEPLOYMENT_PATH
+         ls -lhd $PWD
          mkdir -p $DEPLOYMENT_PATH
          echo "::add-path::$DEPLOYMENT_PATH"
       shell: bash
