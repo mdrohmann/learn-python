@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         # Building on both Windows, Linux(Ubuntu) and Mac simultaneously 
-        os: [macos-latest]        
+        os: [macos-latest,ubuntu-latest]        
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
