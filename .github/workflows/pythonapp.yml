@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         # Building on both Windows, Linux(Ubuntu) and Mac simultaneously 
-        os: [windows-latest, ubuntu-latest, macos-latest]        
+        os: [macos-latest]        
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
@@ -57,7 +57,10 @@ jobs:
           ${{ runner.os }}-build-${{ env.cache-name }}
     # Execute linting of the project on ActivePython
     - name: Lint with pylint
-      run: pylint src
+      run: |
+        echo $PATH
+        pylint src
+      shell: bash
     - name: Lint with flake8
       run: flake8 src --statistics --count
     # Running project tests using pytest on ActivePython
