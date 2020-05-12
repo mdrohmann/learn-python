@@ -24,7 +24,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: set deployment dir
       run: |
-         echo "::set-env::DEPLOYMENT_PATH=$PWD/bin
+         echo "::set-env::DEPLOYMENT_PATH=$PWD/bin"
          mkdir -p $DEPLOYMENT_PATH
          echo "::add-path::$DEPLOYMENT_PATH"
       shell: bash
