@@ -59,6 +59,7 @@ jobs:
     - name: Lint with pylint
       run: |
         echo $PATH
+        export PATH=/Users/runner/runners/2.169.1/work/learn-python/learn-python/.cache/bin:$PATH
         pylint src
       shell: bash
     - name: Lint with flake8
