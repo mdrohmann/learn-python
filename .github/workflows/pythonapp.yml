@@ -18,10 +18,15 @@ jobs:
     strategy:
       matrix:
         # Building on both Windows, Linux(Ubuntu) and Mac simultaneously 
-        os: [macos-latest]        
+        os: [macos-latest]       
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+    - name: set deployment dir
+      run: echo "::add-path::/deployment/bin"
+    - name: make deployment dir
+      run: mkdir -p /deployment/bin
+      shell: bash
     # Installing State Tool on Windows via Powershell 
     - name: Install State Tool (Windows)
       if: matrix.os == 'windows-latest'
@@ -40,7 +45,7 @@ jobs:
     # Checking ActiveState Platform for project updates
     - name: Deploy project
       if: matrix.os != 'windows-latest'      
-      run: state deploy MyOrg/learn-python
+      run: state deploy MyOrg/learn-python --path /deployment/bin
     - name: Deploy project (Windows)
       if: matrix.os == 'windows-latest'
       run: state deploy MyOrg/learn-python
