@@ -26,8 +26,6 @@ jobs:
       run: |
          DEPLOYMENT_PATH=$PWD/bin
          echo "::set-env name=DEPLOYMENT_PATH::$DEPLOYMENT_PATH"
-         echo $DEPLOYMENT_PATH
-         ls -lhd $PWD
          mkdir -p $DEPLOYMENT_PATH
          echo "::add-path::$DEPLOYMENT_PATH"
       shell: bash
@@ -49,7 +47,10 @@ jobs:
     # Checking ActiveState Platform for project updates
     - name: Deploy project
       if: matrix.os != 'windows-latest'      
-      run: state deploy MyOrg/learn-python --path $DEPLOYMENT_PATH
+      run: |
+        echo installing to $DEPLOYMENT_PATH
+        state deploy MyOrg/learn-python --path $DEPLOYMENT_PATH
+      shell: bash
     - name: Deploy project (Windows)
       if: matrix.os == 'windows-latest'
       run: state deploy MyOrg/learn-python
